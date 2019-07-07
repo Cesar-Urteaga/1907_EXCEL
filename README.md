@@ -2,7 +2,7 @@
   Author: Cesar Raul Urteaga-Reyesvera.
 -->
 
-#  Excel toolbox <img src="./_IMAGES/Logo.png" align="right" height="130"/>
+#  Excel toolbox <img src="./_IMAGES/Logo.png" align="right" height="140"/>
 
 This project contains some Excel's files or VBA macros that I have been developing throughout my professional career that might be useful in manifold tasks regardless of the field.
 
