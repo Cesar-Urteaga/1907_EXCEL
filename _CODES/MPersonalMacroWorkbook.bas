@@ -16,6 +16,9 @@ Attribute ShowHidePMW.VB_ProcData.VB_Invoke_Func = "Q\n14"
 End Sub
 ' Description       : It exhibits a userform with information of the active
 '                     workbook's sheets.
+'                     Please go over the following link in order to get the
+'                     FShowHideSheet form:
+' https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_WORKBOOKS/FShowHideSheets.xlsm
 ' Suggested shortcut: Ctrl + Shft + s
 Public Sub ShowHIdeSheets()
 Attribute ShowHIdeSheets.VB_ProcData.VB_Invoke_Func = "S\n14"
