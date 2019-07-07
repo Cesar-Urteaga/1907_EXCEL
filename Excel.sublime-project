@@ -1,0 +1,16 @@
+{
+  "folders":
+  [
+    {
+      "file_exclude_patterns":
+      [
+        "*.xls*", "*.frx"
+      ],
+      "folder_exclude_patterns":
+      [
+      ],
+      "name": "EXCEL",
+      "path": "."
+    },
+  ]
+}
