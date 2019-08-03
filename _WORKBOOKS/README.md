@@ -24,7 +24,7 @@ This workbook shows how to use the <a href="https://github.com/Cesar-Urteaga/190
 * First, If it is not specified none of the macro parameters, by default the macro will prompt the user to select the folder for which its contents are required.
 <img src="_IMAGES\MGetHierarchicalTreeContents_01.png">
 
-* Second, once the user specifies the folder (i.e., the host folder), it creates a table with all its contents, starting from the active cell (i.e., the upper left corner).
+* Second, once the user specifies the folder (i.e., the host folder), it creates a table with all its contents, starting from the active cell (i.e., the upper-left corner).
 <img src="_IMAGES\MGetHierarchicalTreeContents_02.png">
 
 Note that the table is sorted by the `File Path` field ascendantly.  Also, an autofilter is embedded.
