@@ -6,3 +6,5 @@
 # ------------------------------------------------------------------------ FILES
 # Ignore the Sublime's project workspace file.
 *.sublime-workspace
+# Ignores the temporary Excel files.
+~*.xls
