@@ -27,7 +27,7 @@ This workbook shows how to use the <a href="https://github.com/Cesar-Urteaga/190
 * Second, once the user specifies the folder (i.e., the host folder), it creates a table with all its contents.
 <img src="_IMAGES\MGetHierarchicalTreeContents_02.png">
 
-The definition for the non-self-explanatory fields are the following:
+The definitions of the non-self-explanatory fields are the following:
 
  * Type         : Type of the object (i.e., folder [D] or file [F]).
  * Name         : Name of the object.
