@@ -34,7 +34,7 @@ The definitions of the non-self-explanatory fields are the following:
   * `Type`         : Type of the object (i.e., folder [D] or file [F]).
   * `Name`         : Name of the object.
   * `Folder Path`  : Parent folder where the object is stored (displayed as a hyperlink).
-  * `File Path`    : If it is a file, it is its path; otherwise, it holds the same value as "Folder Path". Also, it is displayed as a hyperlink.
+  * `File Path`    : If it is a file, it is its path; otherwise, it holds the same value as `Folder Path`. Also, it is displayed as a hyperlink.
   * `#`            : Number level of hierarchy.
   * `Hierarchy`    : Graphically displays the hierarchy ("|" for a folder and "\*" for a file).
 
