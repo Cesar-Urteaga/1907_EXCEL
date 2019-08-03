@@ -45,3 +45,15 @@ Attribute CreateMargin.VB_ProcData.VB_Invoke_Func = "W\n14"
   End With
 End Sub
 
+'--------------------------------------------------------------- GET INFORMATION
+' Description       : It creates a link to the current workbook.
+' Suggested shortcut: Ctrl + Shft + z
+Public Sub CreateHyperlinkCurrentFile()
+Attribute CreateHyperlinkCurrentFile.VB_ProcData.VB_Invoke_Func = "Z\n14"
+  ActiveCell.Select
+  With ActiveCell
+    .Hyperlinks.Add Anchor:=Selection, _
+      Address:=ActiveWorkbook.Path & "\" & ActiveWorkbook.Name, _
+      TextToDisplay:=ActiveWorkbook.Path & "\" & ActiveWorkbook.Name
+  End With
+End Sub
