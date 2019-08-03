@@ -6,10 +6,10 @@
 
 ## Table of Contents
 
--   [FShowHideSheets.xlsb](#fshowhidesheets)
--   [MGetHierarchicalTreeContents.xlsb](#mgethierarchicaltreecontents)
+-   [FShowHideSheets.xlsb](#fshowhidesheetsxlsb)
+-   [MGetHierarchicalTreeContents.xlsb](#mgethierarchicaltreecontentsxlsb)
 
-### FShowHideSheets
+### FShowHideSheets.xlsb
 
 This workbook shows how to use the FShowHideSheets form that renders information as to the sheets of the active workbook as it is depicted below:
 
@@ -17,7 +17,7 @@ This workbook shows how to use the FShowHideSheets form that renders information
 
 In case you only want the userform please check out <a href="https://github.com/Cesar-Urteaga/1907_EXCEL/tree/master/_FORMS" target="_blank">https://github.com/Cesar-Urteaga/1907_EXCEL/tree/master/_FORMS</a>.
 
-### MGetHierarchicalTreeContents
+### MGetHierarchicalTreeContents.xlsb
 
 This workbook shows how to use the <a href="https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MGetHierarchicalTreeContents.bas" target="_blank">MGetHierarchicalTreeContents</a> code that recursively gets the information of the contents of a folder and displays them in a table as it is shown hereunder:
 
