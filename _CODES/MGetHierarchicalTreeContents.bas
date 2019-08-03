@@ -10,7 +10,18 @@ Option Explicit
 '-------------------------------------------------------------------- PROCEDURES
 ' Description       : It creates a hierarchical tree of the contents of a
 '                     specified folder.
+' Parameters:
+'   * rngPivotCell    : Cell that indicates the upper-left corner of the table
+'                       that will have the contents.  If it is not specified,
+'                       it will be the active cell.
+'   * sHostFolderPath : Path of the host folder for which the information will
+'                       be extracted.  If it is missing, it will prompt the user
+'                       to pick out a host folder.
+'   * sStartingFolder : String that states the starting path in which the pop-up
+'                       window that requests the host folder will start off.
+'
 ' N.B.: This code was based on the following information:
+'
 '   - https://stackoverflow.com/a/26392703
 '   - https://stackoverflow.com/a/22645439
 '   - https://trumpexcel.com/vba-filesystemobject/#Example-3-Get-a-List-of-All-Files-in-a-Folder
@@ -20,65 +31,75 @@ Option Explicit
 '   - https://docs.microsoft.com/en-us/office/vba/api/excel.hyperlinks.add
 '   - https://trumpexcel.com/sort-data-vba/
 '   - https://stackoverflow.com/q/7751464
-Public Sub DisplayHierarchicalContent()
+Public Sub DisplayHierarchicalContent(Optional ByRef rngPivotCell As Range _
+                                                                = Nothing, _
+                                      Optional ByRef sHostFolderPath As String _
+                                                               = vbNullString, _
+                                      Optional ByRef sStartingFolder As String _
+                                                               = vbNullString)
   Dim fd As FileDialog
   Dim objFileSystem As Object, objHostFolder As Object
-  Dim sFolder As String
-  Dim rngActiveCell As Range, rng As Range
-  ' Gets the complete path of the selected folder
-  Set fd = Application.FileDialog(msoFileDialogFolderPicker)
-  With fd
-    .Title = "Please select a folder"
-    .AllowMultiSelect = False
-    ' Sets the initial folder to the "Documents" folder (You can change this).
-    ' e.g., Environ$("USERPROFILE") & "\Documents\"
-    .InitialFileName = "C:\Users\Magno\Documents\"
-    ' Binary property that indicates whether the user selected or not a folder
-    ' (if selected it takes -1; otherwise, 0).
-    If .Show <> 0 Then
-      ' Creates the titles where we will put the information in the active cell.
-      ' Type        : Type of the object (i.e., folder [D] or file [F]).
-      ' Name        : Name of the object.
-      ' Folder Path : Parent folder where the object is stored (displayed as a
-      '               hyperlink).
-      ' File Path   : If it is a file, it is its path; otherwise, it holds the
-      '               same value as "Folder Path". Also, it is displayed as a
-      '               hyperlink.
-      ' #           : Number level of hierarchy.
-      ' Hierarchy   : Graphically displays the hierarchy ("|" for a folder and
-      '               "*" for a file).
-      Set rngActiveCell = ActiveCell
-      rngActiveCell.Resize(, 8) = Array("Date Created", "Date Last Modified", _
-                                        "Type", "Name", "Folder Path", _
-                                        "File Path", "#", "Hierarchy")
-      ' Gets the host folder path.
-      sFolder = .SelectedItems(1)
-      ' Defines a file system object for the host folder.
-      Set objFileSystem = CreateObject("Scripting.FileSystemObject")
-      Set objHostFolder = objFileSystem.GetFolder(sFolder)
-      ' Gets the host folder information.
-      Set rng = rngActiveCell.Offset(1)
-      WriteFileSystemObjectInfo objHostFolder, objHostFolder, rng, "D"
-      ' Recursively gets the information of the contents of the host folder.
-      IterateFolder objHostFolder, objHostFolder, rng
-      ' Adds borders to titles.
-      With rngActiveCell.Resize(, 8).Borders(xlEdgeBottom)
-        .LineStyle = xlContinuous
-        .ThemeColor = 1
-        .TintAndShade = -0.249946592608417
-        .Weight = xlThin
-      End With
-      ' Sorts the contents.
-      With Range(ActiveCell, rng.Offset(-1, 7))
-        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, header:=xlYes
-      End With
-      ' Autofits the columns and includes a filter.
-      With rngActiveCell
-        .Resize(, 8).AutoFilter
-        .Offset(1).Resize(, 2).Columns.AutoFit
-        .Offset(, 2).Resize(, 5).Columns.AutoFit
-      End With
-    End If
+  Dim rng As Range
+  '------------------ SETUP
+  If sHostFolderPath = vbNullString Then
+    ' Gets the complete path of the selected folder
+    Set fd = Application.FileDialog(msoFileDialogFolderPicker)
+    With fd
+      .Title = "Please select a folder"
+      .AllowMultiSelect = False
+      ' Sets the default folder to the "Desktop" folder (You can change this).
+      ' e.g., Environ$("USERPROFILE") & "\Desktop\"
+      .InitialFileName = IIf(sStartingFolder = vbNullString, _
+                             Environ$("USERPROFILE") & "\Desktop\", _
+                             sStartingFolder)
+      ' Binary property that indicates whether the user selected or not a folder
+      ' (if selected it takes -1; otherwise, 0).
+      If .Show <> 0 Then sHostFolderPath = .SelectedItems(1) Else Exit Sub
+    End With
+  End If
+  '
+  If rngPivotCell Is Nothing Then Set rngPivotCell = ActiveCell
+  '
+  ' Creates the titles where we will put the information in the active cell.
+  ' Type        : Type of the object (i.e., folder [D] or file [F]).
+  ' Name        : Name of the object.
+  ' Folder Path : Parent folder where the object is stored (displayed as a
+  '               hyperlink).
+  ' File Path   : If it is a file, it is its path; otherwise, it holds the
+  '               same value as "Folder Path". Also, it is displayed as a
+  '               hyperlink.
+  ' #           : Number level of hierarchy.
+  ' Hierarchy   : Graphically displays the hierarchy ("|" for a folder and
+  '               "*" for a file).
+  rngPivotCell.Resize(, 8) = Array("Date Created", "Date Last Modified", _
+                                   "Type", "Name", "Folder Path", _
+                                   "File Path", "#", "Hierarchy")
+  '------------------ MAIN PROCESS
+  ' Defines a file system object for the host folder.
+  Set objFileSystem = CreateObject("Scripting.FileSystemObject")
+  Set objHostFolder = objFileSystem.GetFolder(sHostFolderPath)
+  ' Gets the host folder information.
+  Set rng = rngPivotCell.Offset(1)
+  WriteFileSystemObjectInfo objHostFolder, objHostFolder, rng, "D"
+  ' Recursively gets the information of the contents of the host folder.
+  IterateFolder objHostFolder, objHostFolder, rng
+  '------------------ FORMAT
+  ' Adds borders to titles.
+  With rngPivotCell.Resize(, 8).Borders(xlEdgeBottom)
+    .LineStyle = xlContinuous
+    .ThemeColor = 1
+    .TintAndShade = -0.249946592608417
+    .Weight = xlThin
+  End With
+  ' Sorts the contents.
+  With Range(rngPivotCell, rng.Offset(-1, 7))
+    .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, header:=xlYes
+  End With
+  ' Autofits the columns and includes a filter.
+  With rngPivotCell
+    .Resize(, 8).AutoFilter
+    .Offset(1).Resize(, 2).Columns.AutoFit
+    .Offset(, 2).Resize(, 5).Columns.AutoFit
   End With
 End Sub
 ' Description       : It gets the information of the contents of a folder
