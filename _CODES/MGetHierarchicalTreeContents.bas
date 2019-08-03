@@ -19,6 +19,7 @@ Option Explicit
 '   - https://stackoverflow.com/a/23357807
 '   - https://docs.microsoft.com/en-us/office/vba/api/excel.hyperlinks.add
 '   - https://trumpexcel.com/sort-data-vba/
+'   - https://stackoverflow.com/q/7751464
 Public Sub DisplayHierarchicalContent()
   Dim fd As FileDialog
   Dim objFileSystem As Object, objHostFolder As Object
@@ -29,8 +30,9 @@ Public Sub DisplayHierarchicalContent()
   With fd
     .Title = "Please select a folder"
     .AllowMultiSelect = False
-    ' Sets the initial folder up based on the active workbook.
-    .InitialFileName = ThisWorkbook.Path + "\"
+    ' Sets the initial folder to the "Documents" folder (You can change this).
+    ' e.g., Environ$("USERPROFILE") & "\Documents\"
+    .InitialFileName = "C:\Users\Magno\Documents\"
     ' Binary property that indicates whether the user selected or not a folder
     ' (if selected it takes -1; otherwise, 0).
     If .Show <> 0 Then
@@ -68,7 +70,7 @@ Public Sub DisplayHierarchicalContent()
       End With
       ' Sorts the contents.
       With Range(ActiveCell, rng.Offset(-1, 7))
-        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, Header:=xlYes
+        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, header:=xlYes
       End With
       ' Autofits the columns and includes a filter.
       With rngActiveCell
