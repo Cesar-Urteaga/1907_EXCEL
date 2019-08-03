@@ -27,7 +27,7 @@ This workbook shows how to use the <a href="https://github.com/Cesar-Urteaga/190
 * Second, once the user specifies the folder (i.e., the host folder), it creates a table with all its contents.
 <img src="_IMAGES\MGetHierarchicalTreeContents_02.png">
 
-Note that the table is sorted by the `File Path` field ascendantly.  Also, and autofilter is embedded.
+Note that the table is sorted by the `File Path` field ascendantly.  Also, an autofilter is embedded.
 
 The definitions of the non-self-explanatory fields are the following:
 
