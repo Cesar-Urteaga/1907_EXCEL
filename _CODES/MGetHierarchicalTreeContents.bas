@@ -8,11 +8,6 @@ Attribute VB_Name = "MGetHierarchicalTreeContents"
 Option Explicit
 
 '-------------------------------------------------------------------- PROCEDURES
-Public Sub GetContents()
-  wksExample.[C7].Activate
-  DisplayHierarchicalContent
-End Sub
-
 ' Description       : It creates a hierarchical tree of the contents of a
 '                     specified folder.
 ' N.B.: This code was based on the following information:
@@ -23,7 +18,7 @@ End Sub
 '   - https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/file-object
 '   - https://stackoverflow.com/a/23357807
 '   - https://docs.microsoft.com/en-us/office/vba/api/excel.hyperlinks.add
-Private Sub DisplayHierarchicalContent()
+Public Sub DisplayHierarchicalContent()
   Dim fd As FileDialog
   Dim objFileSystem As Object, objHostFolder As Object
   Dim sFolder As String
@@ -63,17 +58,22 @@ Private Sub DisplayHierarchicalContent()
       WriteFileSystemObjectInfo objHostFolder, objHostFolder, rng, "D"
       ' Recursively gets the information of the contents of the host folder.
       IterateFolder objHostFolder, objHostFolder, rng
-      ' Autofits the columns.
-      With rngActiveCell
-        .Offset(1).Resize(, 2).Columns.AutoFit
-        .Offset(, 2).Resize(, 5).Columns.AutoFit
-      End With
       ' Adds borders to titles.
       With rngActiveCell.Resize(, 8).Borders(xlEdgeBottom)
         .LineStyle = xlContinuous
         .ThemeColor = 1
         .TintAndShade = -0.249946592608417
         .Weight = xlThin
+      End With
+      ' Sorts the contents.
+      With Range(ActiveCell, rng.Offset(-1, 7))
+        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, header:=xlYes
+      End With
+      ' Autofits the columns and includes a filter.
+      With rngActiveCell
+        .Resize(, 8).AutoFilter
+        .Offset(1).Resize(, 2).Columns.AutoFit
+        .Offset(, 2).Resize(, 5).Columns.AutoFit
       End With
     End If
   End With

@@ -57,3 +57,12 @@ Attribute CreateHyperlinkCurrentFile.VB_ProcData.VB_Invoke_Func = "Z\n14"
       TextToDisplay:=ActiveWorkbook.Path & "\" & ActiveWorkbook.Name
   End With
 End Sub
+
+' Description       : It gets the contents of a specified folder hierarchically.
+' Suggested shortcut: Ctrl + Shft + f
+'                     Please go over the following link in order to get the
+'                     DisplayHierarchicalContent code:
+' https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MGetHierarchicalTreeContents.bas
+Public Sub GetHierarchicalContents()
+  DisplayHierarchicalContent
+End Sub

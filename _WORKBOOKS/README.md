@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
--   [FShowHideSheets.xlsm](#fshowhidesheets)
+-   [FShowHideSheets.xlsb](#fshowhidesheets)
 -   [MGetHierarchicalTreeContents.xlsb](#mgethierarchicaltreecontents)
 
 ### FShowHideSheets
@@ -27,11 +27,15 @@ This workbook shows how to use the <a href="https://github.com/Cesar-Urteaga/190
 * Second, once the user specifies the folder (i.e., the host folder), it creates a table with all its contents.
 <img src="_IMAGES\MGetHierarchicalTreeContents_02.png">
 
+Note that the table is sorted by the `File Path` field ascendantly.  Also, and autofilter is embedded.
+
 The definitions of the non-self-explanatory fields are the following:
 
- * Type         : Type of the object (i.e., folder [D] or file [F]).
- * Name         : Name of the object.
- * Folder Path  : Parent folder where the object is stored (displayed as a hyperlink).
- * File Path    : If it is a file, it is its path; otherwise, it holds the same value as "Folder Path". Also, it is displayed as a hyperlink.
- * \#           : Number level of hierarchy.
- * Hierarchy    : Graphically displays the hierarchy ("|" for a folder and "\*" for a file).
+ * `Type`         : Type of the object (i.e., folder [D] or file [F]).
+ * `Name`         : Name of the object.
+ * `Folder Path`  : Parent folder where the object is stored (displayed as a hyperlink).
+ * `File Path`    : If it is a file, it is its path; otherwise, it holds the same value as "Folder Path". Also, it is displayed as a hyperlink.
+ * `#`            : Number level of hierarchy.
+ * `Hierarchy`    : Graphically displays the hierarchy ("|" for a folder and "\*" for a file).
+
+
