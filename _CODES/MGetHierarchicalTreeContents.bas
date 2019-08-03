@@ -18,6 +18,7 @@ Option Explicit
 '   - https://docs.microsoft.com/en-us/office/vba/language/reference/user-interface-help/file-object
 '   - https://stackoverflow.com/a/23357807
 '   - https://docs.microsoft.com/en-us/office/vba/api/excel.hyperlinks.add
+'   - https://trumpexcel.com/sort-data-vba/
 Public Sub DisplayHierarchicalContent()
   Dim fd As FileDialog
   Dim objFileSystem As Object, objHostFolder As Object
@@ -67,7 +68,7 @@ Public Sub DisplayHierarchicalContent()
       End With
       ' Sorts the contents.
       With Range(ActiveCell, rng.Offset(-1, 7))
-        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, header:=xlYes
+        .Sort Key1:=ActiveCell.Offset(, 5), Order1:=xlAscending, Header:=xlYes
       End With
       ' Autofits the columns and includes a filter.
       With rngActiveCell
@@ -101,7 +102,7 @@ End Sub
 
 '--------------------------------------------------------------------- FUNCTIONS
 ' Description       : It puts the information of a filesystem object in a
-'                     specific range.
+'                     specific range (starting in "rng").
 Private Function WriteFileSystemObjectInfo(ByRef objFSFolder As Object, _
                                            ByRef objFS As Object, _
                                            ByRef rng As Range, _
