@@ -47,7 +47,7 @@ End Sub
 
 '--------------------------------------------------------------- GET INFORMATION
 ' Description       : It creates a link to the current workbook.
-' Suggested shortcut: Ctrl + Shft + d
+' Suggested shortcut: Ctrl + Shft + z
 Public Sub CreateHyperlinkCurrentFile()
 Attribute CreateHyperlinkCurrentFile.VB_ProcData.VB_Invoke_Func = "Z\n14"
   ActiveCell.Select
@@ -59,7 +59,7 @@ Attribute CreateHyperlinkCurrentFile.VB_ProcData.VB_Invoke_Func = "Z\n14"
 End Sub
 
 ' Description       : It gets the contents of a specified folder hierarchically.
-' Suggested shortcut: Ctrl + Shft + f
+' Suggested shortcut: Ctrl + Shft + d
 '                     Please go over the following link in order to get the
 '                     DisplayHierarchicalContent code:
 ' https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MGetHierarchicalTreeContents.bas
