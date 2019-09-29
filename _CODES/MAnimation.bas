@@ -23,7 +23,7 @@ Public Sub Animate()
   lCycles = 2   ' Number of laps.
   lLaps = 3     ' Number of whole spins.
   '------------------ MAIN CODE
-  sEmoticons = " \'.,  |:,  /;,  .-.,   ;\,   :|,   .'/,   ._."
+  sEmoticons = " \:,  |:,  /:,  .-.,   :\,   :|,   :/,   ._."
   avEmoticons = VBA.Split(sEmoticons, ",")
   For li = 1 To lCycles
     ' Forward
