@@ -39,7 +39,7 @@ Public Sub Animate()
     Next lj
     lLeadingSpaces = lLeadingSpaces - 3
     ' Backward
-    For lj = 1 To 3
+    For lj = 1 To lLaps
       For lk = UBound(avEmoticons) To LBound(avEmoticons) Step -1
         Sleep lSpeed
         wksAnimation.Range(sCell) = VBA.String(lLeadingSpaces, " ") + avEmoticons(lk)
