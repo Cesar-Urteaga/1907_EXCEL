@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} FShowHideSheets
+Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} FShowHideSheets 
    Caption         =   "Show/Hide Worksheets"
    ClientHeight    =   6510
    ClientLeft      =   45
@@ -29,6 +29,10 @@ Enum fshsListSelection
   fshsListSelectionInverse
 End Enum
 
+Private Sub lblNumberOfVeryHiddenSheets_Click()
+
+End Sub
+
 '------------------------------------------------------------------------ EVENTS
 Private Sub lstSheets_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
   Dim li As Long
@@ -52,9 +56,19 @@ Private Sub lstSheets_MouseDown(ByVal Button As Integer, _
 End Sub
 
 Private Sub lstSheets_KeyPress(ByVal KeyAscii As MSForms.ReturnInteger)
+  Dim li As Long
   On Error Resume Next
   '
   Select Case KeyAscii
+    Case 13:
+      For li = 0 To lstSheets.ListCount - 1
+        If lstSheets.Selected(li) Then
+          ActiveWorkbook.Sheets(lstSheets.List(li)).Visible = -1
+          ActiveWorkbook.Sheets(lstSheets.List(li)).Activate
+          Unload Me
+          Exit For
+        End If
+      Next li
     Case 27: Unload Me
     Case Asc("A"), Asc("a"):
       ChangeListSelection fshsListSelectionTrue
