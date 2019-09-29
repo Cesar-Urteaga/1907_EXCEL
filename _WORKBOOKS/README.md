@@ -8,6 +8,7 @@
 
 -   [FShowHideSheets.xlsb](#fshowhidesheetsxlsb)
 -   [MGetHierarchicalTreeContents.xlsb](#mgethierarchicaltreecontentsxlsb)
+-   [MAnimate.xlsb](#manimatexlsb)
 
 ### FShowHideSheets.xlsb
 
@@ -43,3 +44,12 @@ On the other hand, the `DisplayHierarchicalContent` macro has the succeeding 3 o
   * `rngPivotCell`    : Cell that indicates the upper-left corner of the table that will have the contents.  If it is not specified, it will be the active cell.
   * `sHostFolderPath` : Path of the host folder for which the information will be extracted.  If it is missing, it will prompt the user to pick out a host folder.
   * `sStartingFolder` : String that states the starting path in which the pop-up window that requests the host folder will start off.
+
+### MAnimate.xlsb
+
+This workbook shows how to make an emoticon animation within a cell:
+
+<img src="_IMAGES\MAnimate01.png">
+<img src="_IMAGES\MAnimate02.png">
+
+The VBA code is provided in <a href="https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MAnimation.bas".
