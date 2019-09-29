@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} FShowHideSheets 
    Caption         =   "Show/Hide Worksheets"
-   ClientHeight    =   6510
+   ClientHeight    =   6675
    ClientLeft      =   45
    ClientTop       =   390
    ClientWidth     =   8205
