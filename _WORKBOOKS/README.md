@@ -52,4 +52,4 @@ This workbook shows how to make an emoticon animation within a cell:
 <img src="_IMAGES\MAnimate01.png">
 <img src="_IMAGES\MAnimate02.png">
 
-The VBA code is provided in <a href="https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MAnimation.bas".
+The VBA code is provided in the <a href="https://github.com/Cesar-Urteaga/1907_EXCEL/blob/master/_CODES/MAnimation.bas" target="_blank">MAnimation.bas</a> file.
